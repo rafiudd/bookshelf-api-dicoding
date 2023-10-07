@@ -74,6 +74,25 @@ class UpsertClass {
       return wrapper.data(error, 'Gagal memperbarui buku catch', 500);
     }
   }
+
+  async deleteBook(payload) {
+    try {
+      const index = books.findIndex((book) => book.id === payload.bookId);
+
+      if (index == -1) {
+        return wrapper.error(new BadRequestError('Buku gagal dihapus. Id tidak ditemukan'), 'data not found', 404);
+      }
+
+
+      if (index) {
+        books.splice(index, 1);
+      }
+
+      return wrapper.data('', 'Buku berhasil dihapus', 200);
+    } catch (error) {
+      return wrapper.data(error, 'Buku gagal dihapus', 500);
+    }
+  }
 }
 
 module.exports = UpsertClass;

@@ -46,8 +46,32 @@ async function updateBook(req, res) {
     if (result.err) {
       return result;
     }
-    console.log(result, 'result');
     return upsertUsecase.updateBook(result.data);
+  };
+
+  const sendResponse = async (result) => {
+    if (result.err) {
+      return wrapper.response(res, 'fail', result, result.message);
+    }
+
+    return wrapper.response(res, 'success', result, result.message, 200);
+  };
+  return sendResponse(await postRequest(validatePayload));
+};
+
+async function deleteBook(req, res) {
+  const payload = {
+    ...req.params,
+  };
+
+  const validatePayload = validator.isValidPayload(payload, queryModel.bookId);
+
+  const postRequest = async (result) => {
+    if (result.err) {
+      return result;
+    }
+    console.log(result, 'result');
+    return upsertUsecase.deleteBook(result.data);
   };
 
   const sendResponse = async (result) => {
@@ -128,6 +152,11 @@ const handlers = [
     method: 'PUT',
     path: '/books/{bookId}',
     handler: updateBook,
+  },
+  {
+    method: 'DELETE',
+    path: '/books/{bookId}',
+    handler: deleteBook,
   },
 ];
 
