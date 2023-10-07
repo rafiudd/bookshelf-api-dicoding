@@ -22,7 +22,31 @@ const createBookModel = joi.object({
   reading: joi.boolean().required(),
 });
 
+const updateBookModel = joi.object({
+  bookId: joi.string().optional(),
+  name: joi.string().optional().error((errors) => {
+    errors.forEach((err) => {
+      switch (err.type) {
+        case 'any.optional':
+          err.message = 'Gagal menambahkan buku. Mohon isi nama buku';
+          break;
+        default:
+          break;
+      }
+    });
+    return errors;
+  }),
+  year: joi.number().optional(),
+  author: joi.string().optional(),
+  summary: joi.string().optional(),
+  publisher: joi.string().optional(),
+  pageCount: joi.number().optional(),
+  readPage: joi.number().optional(),
+  reading: joi.boolean().optional(),
+});
+
 module.exports = {
   createBookModel,
+  updateBookModel,
 };
 

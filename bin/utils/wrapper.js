@@ -8,8 +8,12 @@ const error = (err, description, code) => ({err, code, data: '', message: descri
 const response = (res, type, result, message = '') => {
   const objResponse = {
     status: type,
-    data: result.data,
+    message: message,
   };
+
+  if (result.data) {
+    objResponse.data = result.data;
+  }
 
   if (type == 'fail') {
     delete objResponse.data;

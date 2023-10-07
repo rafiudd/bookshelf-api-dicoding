@@ -5,7 +5,12 @@ const pagination = joi.object({
   size: joi.number().optional().default(10),
 });
 
+const bookId = joi.object({
+  bookId: joi.string().required(),
+});
+
 module.exports = {
   pagination,
+  bookId,
 };
 
