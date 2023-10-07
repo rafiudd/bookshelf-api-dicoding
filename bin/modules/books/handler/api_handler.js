@@ -70,7 +70,7 @@ async function deleteBook(req, res) {
     if (result.err) {
       return result;
     }
-    console.log(result, 'result');
+
     return upsertUsecase.deleteBook(result.data);
   };
 
@@ -86,7 +86,7 @@ async function deleteBook(req, res) {
 
 async function getAllBooks(req, res) {
   const payload = {
-    ...req.payload,
+    ...req.query,
   };
 
   const validatePayload = validator.isValidPayload(payload, queryModel.pagination);
