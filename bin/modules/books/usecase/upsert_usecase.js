@@ -53,20 +53,18 @@ class UpsertClass {
         return wrapper.error(new BadRequestError('Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount'), 'payload is not valid', 400);
       }
 
-      if (index) {
-        books[index].name = payload.name;
-        books[index].year = payload.year;
-        books[index].author = payload.author;
-        books[index].summary = payload.summary;
-        books[index].publisher = payload.publisher;
-        books[index].pageCount = payload.pageCount;
-        books[index].readPage = payload.readPage;
-        books[index].reading = payload.reading;
-        books[index].updatedAt = new Date().toISOString();
+      books[index].name = payload.name;
+      books[index].year = payload.year;
+      books[index].author = payload.author;
+      books[index].summary = payload.summary;
+      books[index].publisher = payload.publisher;
+      books[index].pageCount = payload.pageCount;
+      books[index].readPage = payload.readPage;
+      books[index].reading = payload.reading;
+      books[index].updatedAt = new Date().toISOString();
 
-        if (payload.pageCount == payload.readPage) {
-          books[index].finished = true;
-        }
+      if (payload.pageCount == payload.readPage) {
+        books[index].finished = true;
       }
 
       return wrapper.data('', 'Buku berhasil diperbarui', 200);
