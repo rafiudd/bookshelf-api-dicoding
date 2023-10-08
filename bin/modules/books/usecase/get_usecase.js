@@ -40,7 +40,7 @@ class GetClass {
             result.push({
               id: filteredBooks[index].id,
               name: filteredBooks[index].name,
-              author: filteredBooks[index].author,
+              publisher: filteredBooks[index].publisher,
             });
           }
         };
@@ -50,7 +50,7 @@ class GetClass {
             result.push({
               id: books[index].id,
               name: books[index].name,
-              author: books[index].author,
+              publisher: books[index].publisher,
             });
           }
         }
