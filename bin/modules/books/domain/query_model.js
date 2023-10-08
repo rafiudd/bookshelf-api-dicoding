@@ -3,7 +3,7 @@ const joi = require('joi');
 const pagination = joi.object({
   finished: joi.number().optional(),
   reading: joi.number().optional(),
-  name: joi.string().optional(),
+  name: joi.string().optional().allow(''),
 });
 
 const bookId = joi.object({

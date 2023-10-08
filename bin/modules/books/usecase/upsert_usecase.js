@@ -35,7 +35,7 @@ class UpsertClass {
         bookId: newData.id,
       };
 
-      return wrapper.data(response, 'Buku berhasil ditambahkan', 200);
+      return wrapper.data(response, 'Buku berhasil ditambahkan', 201);
     } catch (error) {
       return wrapper.error(new BadRequestError('Buku gagal ditambahkan'), 'Internal server error', 500);
     }
@@ -83,10 +83,7 @@ class UpsertClass {
         return wrapper.error(new BadRequestError('Buku gagal dihapus. Id tidak ditemukan'), 'data not found', 404);
       }
 
-
-      if (index) {
-        books.splice(index, 1);
-      }
+      books.splice(index, 1);
 
       return wrapper.data('', 'Buku berhasil dihapus', 200);
     } catch (error) {

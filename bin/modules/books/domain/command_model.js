@@ -24,11 +24,11 @@ const createBookModel = joi.object({
 
 const updateBookModel = joi.object({
   bookId: joi.string().optional(),
-  name: joi.string().optional().error((errors) => {
+  name: joi.string().required().error((errors) => {
     errors.forEach((err) => {
       switch (err.type) {
-        case 'any.optional':
-          err.message = 'Gagal menambahkan buku. Mohon isi nama buku';
+        case 'any.required':
+          err.message = 'Gagal memperbarui buku. Mohon isi nama buku';
           break;
         default:
           break;
